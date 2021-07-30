@@ -2,9 +2,10 @@ import React, { useState, useEffect } from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Layout from "./Layout";
 import Login from "../routes/Login";
+import SignUp from "../routes/Sign-up";
 import Home from "../routes/Home";
 
-const Router = () => {
+const Router = (props) => {
   const [logged, setLogged] = useState(false);
 
   useEffect(() => {
@@ -26,6 +27,7 @@ const Router = () => {
       <Layout logged={logged}>
         <Switch>
           <Route exact path="/" component={logged ? Home : Login} />
+          <Route exact path="/sign-up" component={logged ? Home : SignUp} />
         </Switch>
       </Layout>
     </BrowserRouter>
