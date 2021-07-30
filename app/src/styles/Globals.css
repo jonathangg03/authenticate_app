@@ -29,13 +29,13 @@ header h1 {
   text-align: center;
 }
 
-header button {
+/* header button {
   background-color: transparent;
   border: 1px solid white;
   color: white;
   padding: 10px 20px;
   font-family: "Comfortaa", cursive;
-}
+} */
 
 form {
   width: 100%;
@@ -63,10 +63,9 @@ input:focus-visible {
 }
 
 form button {
-  display: block;
+  margin-right: 10px;
   padding: 10px 20px;
   font-family: "Comfortaa", cursive;
-  margin: 0 auto;
 }
 
 .home__title {
@@ -97,6 +96,14 @@ form button {
 .home__container ul li {
   font-size: 1.5rem;
   padding: 5px 0;
+}
+
+.home__button {
+  margin: 0 auto;
+  display: block;
+  padding: 10px 20px;
+  font-family: "Comfortaa", cursive;
+  margin-top: 10px;
 }
 
 @media (max-width: 560px) {

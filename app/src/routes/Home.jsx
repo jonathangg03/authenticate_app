@@ -32,6 +32,11 @@ class Home extends Component {
     }
   }
 
+  handleLoggout = () => {
+    document.cookie = "token=; max-age=0";
+    location.reload();
+  };
+
   /*
           {this.state.data.map((userInfoElement) => (
           <div key={userInfoElement.id}>
@@ -57,6 +62,13 @@ class Home extends Component {
             <li>Last name: {this.state.data[1]}</li>
             <li>Email: {this.state.data[2]}</li>
           </ul>
+          <button
+            type="button"
+            onClick={this.handleLoggout}
+            className="home__button"
+          >
+            Log out
+          </button>
         </div>
       </>
     );

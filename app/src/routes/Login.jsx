@@ -25,6 +25,10 @@ class Login extends Component {
     });
   };
 
+  handleSignUp = () => {
+    this.props.history.push("/sign-up");
+  };
+
   handleLogin = async (event) => {
     event.preventDefault();
     this.setState({ ...this.state, loading: true });
@@ -76,6 +80,7 @@ class Login extends Component {
             onChange={this.handleChangeFormValues}
           />
           <button type="submit">Log in</button>
+          <button onClick={this.handleSignUp}>Sign up</button>
         </form>
         {this.state.loading && <Loading />}
       </>
