@@ -2,13 +2,15 @@ import React, { Component } from "react";
 import Loading from "../components/Loading";
 import axios from "axios";
 
-class Login extends Component {
+class SignUp extends Component {
   constructor(props) {
     super(props);
     this.state = {
       loading: false,
       error: null,
       formValues: {
+        firstName: "",
+        lastName: "",
         email: "",
         password: "",
       },
@@ -25,55 +27,56 @@ class Login extends Component {
     });
   };
 
-  handleLogin = async (event) => {
+  handleSignUp = async (event) => {
     event.preventDefault();
     this.setState({ ...this.state, loading: true });
     try {
-      const response = await axios({
-        url: "http://localhost:3000/api/user/sign-in",
+      await axios({
+        url: "http://localhost:3000/api/user/sign-up",
         method: "post",
-        auth: {
-          username: this.state.formValues.email,
-          password: this.state.formValues.password,
-        },
+        data: this.state.formValues,
       });
-      document.cookie = `token=${response.data.token}`;
       this.setState({ ...this.state, loading: false });
+      this.props.history.push("/");
       location.reload();
     } catch (error) {
       this.setState({ ...this.state, loading: false, error: error });
     }
   };
 
-  handleClick = () => {
-    const cookieA = document.cookie
-      .split("; ")
-      .find((row) => row.startsWith("s="))
-      .split("=")[1];
-    if (cookieA) {
-      console.log("a");
-    } else {
-      console.log("b");
-    }
-  };
-
   render() {
     return (
       <>
-        <form action="" onSubmit={this.handleLogin}>
-          <label htmlFor="">Email:</label>
+        <form action="" onSubmit={this.handleSignUp}>
+          <label htmlFor="">First name:</label>
           <input
             type="text"
-            placeholder="Ingrese su email"
-            value={this.state.formValues.email}
+            value={this.state.formValues.firstName}
+            name="firstName"
+            required
+            onChange={this.handleChangeFormValues}
+          />
+          <label htmlFor="">Last name:</label>
+          <input
+            type="text"
+            name="lastName"
+            required
+            value={this.state.formValues.lastName}
+            onChange={this.handleChangeFormValues}
+          />
+          <label htmlFor="">Email:</label>
+          <input
+            type="email"
             name="email"
+            required
+            value={this.state.formValues.email}
             onChange={this.handleChangeFormValues}
           />
           <label htmlFor="">Password:</label>
           <input
             type="password"
-            placeholder="Ingrese su password"
             name="password"
+            required
             value={this.state.formValues.password}
             onChange={this.handleChangeFormValues}
           />
@@ -85,4 +88,4 @@ class Login extends Component {
   }
 }
 
-export default Login;
+export default SignUp;

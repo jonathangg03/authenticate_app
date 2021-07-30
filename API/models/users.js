@@ -1,28 +1,33 @@
-const mongoose = require('mongoose')
-require('dotenv').config()
-const Schema = mongoose.Schema
-mongoose.connect(process.env.DB_URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-}, () => console.log('DB connected'))
+const mongoose = require("mongoose");
+const config = require("../config");
+const Schema = mongoose.Schema;
+
+mongoose.connect(
+  config.dbUri,
+  {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  },
+  () => console.log("DB connected")
+);
 
 const userSchema = new Schema({
   firstName: {
     required: true,
-    type: String
+    type: String,
   },
   lastName: {
     required: true,
-    type: String
+    type: String,
   },
   email: {
     required: true,
-    type: String
+    type: String,
   },
   password: {
     required: true,
-    type: String
-  }
-})
+    type: String,
+  },
+});
 
-module.exports = mongoose.model('user', userSchema)
+module.exports = mongoose.model("user", userSchema);

@@ -64,7 +64,6 @@ class Login extends Component {
           <label htmlFor="">Email:</label>
           <input
             type="text"
-            placeholder="Ingrese su email"
             value={this.state.formValues.email}
             name="email"
             onChange={this.handleChangeFormValues}
@@ -72,7 +71,6 @@ class Login extends Component {
           <label htmlFor="">Password:</label>
           <input
             type="password"
-            placeholder="Ingrese su password"
             name="password"
             value={this.state.formValues.password}
             onChange={this.handleChangeFormValues}

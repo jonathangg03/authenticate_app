@@ -4,6 +4,7 @@ const bcrypt = require("bcryptjs");
 const passport = require("passport");
 const jwt = require("jsonwebtoken");
 const router = express.Router();
+const config = require("../config");
 require("dotenv").config();
 require("../auth/strategies/basic");
 
@@ -22,6 +23,19 @@ router.post("/sign-up", async (req, res) => {
 
   await newUser.save();
   return res.status(201).send("Usuario creado");
+});
+
+router.get("/:token", (req, res) => {
+  jwt.verify(req.params.token, config.secret, (err, decode) => {
+    if (err) {
+      console.error(err);
+    }
+    res.status(200).json({
+      firstName: decode.firstName,
+      lastName: decode.lastName,
+      email: decode.email,
+    });
+  });
 });
 
 router.post("/sign-in", (req, res, next) => {
