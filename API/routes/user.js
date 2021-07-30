@@ -34,6 +34,7 @@ router.get("/:token", (req, res) => {
       firstName: decode.firstName,
       lastName: decode.lastName,
       email: decode.email,
+      id: decode.sub,
     });
   });
 });
