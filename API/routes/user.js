@@ -82,12 +82,16 @@ router.post("/sign-provider", async (req, res) => {
   });
 
   if (user.length > 0) {
-    delete user.password;
-    console.log(user);
-    const token = jwt.sign(user, config.secret, {
+    const payload = {
+      sub: user[0]._id,
+      firstName: user[0].firstName,
+      lastName: user[0].lastName,
+      email: user[0].email,
+    };
+    const token = jwt.sign(payload, config.secret, {
       expiresIn: "1h",
     });
-    return res.status(200).json({ token, user: { ...user } });
+    return res.status(200).json({ token, user: { ...payload } });
   }
 
   const newUser = new Users({
@@ -104,10 +108,11 @@ router.post("/sign-provider", async (req, res) => {
     lastName: newUser.lastName,
     email: newUser.email,
   };
+
+  console.log(payload);
   const token = jwt.sign(payload, config.secret, {
     expiresIn: "1h",
   });
-
   return res.status(201).json({ token, user: { ...payload } });
 });
 
