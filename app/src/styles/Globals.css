@@ -106,6 +106,12 @@ form button {
   margin-top: 10px;
 }
 
+.notfound__message {
+  text-align: center;
+  font-size: 3rem;
+  padding-top: 40px;
+}
+
 @media (max-width: 560px) {
   header {
     display: block;

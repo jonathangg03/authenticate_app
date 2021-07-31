@@ -4,6 +4,7 @@ import Layout from "./Layout";
 import Login from "../routes/Login";
 import SignUp from "../routes/Sign-up";
 import Home from "../routes/Home";
+import NotFound from "../routes/NotFound";
 
 const Router = (props) => {
   const [logged, setLogged] = useState(false);
@@ -28,6 +29,7 @@ const Router = (props) => {
         <Switch>
           <Route exact path="/" component={logged ? Home : Login} />
           <Route exact path="/sign-up" component={logged ? Home : SignUp} />
+          <Route component={NotFound} />
         </Switch>
       </Layout>
     </BrowserRouter>
