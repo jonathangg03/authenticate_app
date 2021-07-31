@@ -12,22 +12,10 @@ mongoose.connect(
 );
 
 const userSchema = new Schema({
-  firstName: {
-    required: true,
-    type: String,
-  },
-  lastName: {
-    required: true,
-    type: String,
-  },
-  email: {
-    required: true,
-    type: String,
-  },
-  password: {
-    required: true,
-    type: String,
-  },
+  firstName: String,
+  lastName: String,
+  email: String,
+  password: String,
 });
 
 module.exports = mongoose.model("user", userSchema);

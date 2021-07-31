@@ -5,8 +5,9 @@ const passport = require("passport");
 const jwt = require("jsonwebtoken");
 const router = express.Router();
 const config = require("../config");
-require("dotenv").config();
+
 require("../auth/strategies/basic");
+require("../auth/strategies/google");
 
 router.post("/sign-up", async (req, res) => {
   const userTaken = await Users.find({ email: req.body.email });
@@ -59,7 +60,7 @@ router.post("/sign-in", (req, res, next) => {
           email: user.email,
         };
 
-        const token = jwt.sign(payload, process.env.JWT_SECRET, {
+        const token = jwt.sign(payload, config.secret, {
           expiresIn: "1h",
         });
         return res.status(200).json({ token, user: { ...payload } });
@@ -73,5 +74,56 @@ router.post("/sign-in", (req, res, next) => {
 router.get("/", (req, res) => {
   Users.find().then((users) => res.status(200).json(users));
 });
+
+router.post("/sign-provider", async (req, res) => {
+  //Aquí debemos crear o traer un usuario de la DB dependiendo sí existe o no, pero se creará con los datos de google, que definimos en la estrategia
+  const user = await Users.find({
+    email: req.body.email,
+  });
+
+  if (user.length > 0) {
+    delete user.password;
+    console.log(user);
+    const token = jwt.sign(user, config.secret, {
+      expiresIn: "1h",
+    });
+    return res.status(200).json({ token, user: { ...user } });
+  }
+
+  const newUser = new Users({
+    firstName: req.body.firstName,
+    lastName: req.body.lastName,
+    email: req.body.email,
+    password: req.body.password,
+  });
+  await newUser.save();
+
+  const payload = {
+    sub: newUser._id,
+    firstName: newUser.firstName,
+    lastName: newUser.lastName,
+    email: newUser.email,
+  };
+  const token = jwt.sign(payload, config.secret, {
+    expiresIn: "1h",
+  });
+
+  return res.status(201).json({ token, user: { ...payload } });
+});
+
+router.get(
+  "/auth/google",
+  passport.authenticate("google-auth", {
+    scope: ["email", "profile"],
+  })
+);
+
+router.get(
+  "/auth/google/callback",
+  passport.authenticate("google-auth", { session: false }),
+  (req, res) => {
+    res.send("Log in complete");
+  }
+);
 
 module.exports = router;
