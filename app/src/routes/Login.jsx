@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import Loading from "../components/Loading";
+import { FaGoogle, FaFacebookF, FaTwitter } from "react-icons/fa";
+import { Link } from "react-router-dom";
 import axios from "axios";
 
 class Login extends Component {
@@ -23,10 +25,6 @@ class Login extends Component {
         [event.target.name]: event.target.value,
       },
     });
-  };
-
-  handleSignUp = () => {
-    this.props.history.push("/sign-up");
   };
 
   handleLogin = async (event) => {
@@ -71,6 +69,7 @@ class Login extends Component {
             value={this.state.formValues.email}
             name="email"
             onChange={this.handleChangeFormValues}
+            required
           />
           <label htmlFor="">Password:</label>
           <input
@@ -78,9 +77,26 @@ class Login extends Component {
             name="password"
             value={this.state.formValues.password}
             onChange={this.handleChangeFormValues}
+            required
           />
           <button type="submit">Log in</button>
-          <button onClick={this.handleSignUp}>Sign up</button>
+          <button onClick={this.handleSignUpGoogle} className="google__button">
+            <FaGoogle className="btn__icon" />
+            Google
+          </button>
+          <button onClick={this.handleSignUpFacebook} className="fb__button">
+            <FaFacebookF className="btn__icon" />
+            Facebook
+          </button>
+          <button onClick={this.handleSignUpTwitter} className="tt__button">
+            <FaTwitter className="btn__icon" />
+            Twitter
+          </button>
+          {/* <button onClick={this.handleSignUp}>Sign up</button> */}
+          <p className="invite__text">
+            You do not have an account?
+            <Link to="/sign-up">Sign up</Link>
+          </p>
         </form>
         {this.state.loading && <Loading />}
       </>

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Loading from "../components/Loading";
+import { Link } from "react-router-dom";
 import axios from "axios";
 
 class SignUp extends Component {
@@ -85,9 +86,10 @@ class SignUp extends Component {
             onChange={this.handleChangeFormValues}
           />
           <button type="submit">Sign up</button>
-          <button type="button" onClick={this.handleLogin}>
-            Log in
-          </button>
+          <p className="invite__text">
+            You already have an account?
+            <Link to="/">Log in</Link>
+          </p>
         </form>
         {this.state.loading && <Loading />}
       </>
