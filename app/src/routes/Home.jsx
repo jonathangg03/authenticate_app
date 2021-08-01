@@ -25,7 +25,7 @@ class Home extends Component {
       this.setState({
         ...this.state,
         loading: false,
-        data: Object.values(response.data),
+        data: response.data,
       });
     } catch (error) {
       this.setState({ ...this.state, loading: false, error: error.message });
@@ -37,18 +37,6 @@ class Home extends Component {
     location.reload();
   };
 
-  /*
-          {this.state.data.map((userInfoElement) => (
-          <div key={userInfoElement.id}>
-            <ul>
-              <li>First name: {userInfoElement.firstName}</li>
-              <li>Last name: {userInfoElement.lastName}</li>
-              <li>Email: {userInfoElement.email}</li>
-            </ul>
-          </div>
-        ))}
-  */
-
   render() {
     return (
       <>
@@ -58,9 +46,10 @@ class Home extends Component {
         <div className="home__container">
           <h3>This si your information:</h3>
           <ul>
-            <li>First name: {this.state.data[0]}</li>
-            <li>Last name: {this.state.data[1]}</li>
-            <li>Email: {this.state.data[2]}</li>
+            {console.log(this.state.data)}
+            <li>First name: {this.state.data.firstName || "N/F"}</li>
+            <li>Last name: {this.state.data.lastName || "N/F"}</li>
+            <li>Email: {this.state.data.email || "N/F"}</li>
           </ul>
           <button
             type="button"

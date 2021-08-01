@@ -94,11 +94,12 @@ router.post("/sign-provider", async (req, res) => {
     return res.status(200).json({ token, user: { ...payload } });
   }
 
+  const hashedPass = await bcrypt.hash(req.body.password, 10);
   const newUser = new Users({
     firstName: req.body.firstName,
     lastName: req.body.lastName,
     email: req.body.email,
-    password: req.body.password,
+    password: hashedPass,
   });
   await newUser.save();
 
