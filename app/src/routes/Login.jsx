@@ -82,20 +82,19 @@ class Login extends Component {
           <button type="submit">Log in</button>
           <a
             href="http://localhost:3000/api/user/auth/google"
-            className="google__button"
+            className="social__button google"
           >
             <FaGoogle className="btn__icon" />
-            Ingresar con Google
+            Enter with Google
           </a>
-          <button onClick={this.handleSignUpFacebook} className="fb__button">
+          <a onClick={this.handleSignUpFacebook} className="social__button fb">
             <FaFacebookF className="btn__icon" />
-            Facebook
-          </button>
-          <button onClick={this.handleSignUpTwitter} className="tt__button">
+            Enter with Facebook
+          </a>
+          <a onClick={this.handleSignUpTwitter} className="social__button tt">
             <FaTwitter className="btn__icon" />
-            Twitter
-          </button>
-          {/* <button onClick={this.handleSignUp}>Sign up</button> */}
+            Enter with Twitter
+          </a>
           <p className="invite__text">
             You do not have an account?
             <Link to="/sign-up">Sign up</Link>
