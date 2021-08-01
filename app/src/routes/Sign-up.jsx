@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Loading from "../components/Loading";
+import { FaGoogle, FaFacebookF, FaTwitter } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import axios from "axios";
 
@@ -86,6 +87,21 @@ class SignUp extends Component {
             onChange={this.handleChangeFormValues}
           />
           <button type="submit">Sign up</button>
+          <a
+            href="http://localhost:3000/api/user/auth/google"
+            className="google__button"
+          >
+            <FaGoogle className="btn__icon" />
+            Ingresar con Google
+          </a>
+          <button onClick={this.handleSignUpFacebook} className="fb__button">
+            <FaFacebookF className="btn__icon" />
+            Facebook
+          </button>
+          <button onClick={this.handleSignUpTwitter} className="tt__button">
+            <FaTwitter className="btn__icon" />
+            Twitter
+          </button>
           <p className="invite__text">
             You already have an account?
             <Link to="/">Log in</Link>

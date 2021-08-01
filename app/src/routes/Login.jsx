@@ -80,10 +80,13 @@ class Login extends Component {
             required
           />
           <button type="submit">Log in</button>
-          <button onClick={this.handleSignUpGoogle} className="google__button">
+          <a
+            href="http://localhost:3000/api/user/auth/google"
+            className="google__button"
+          >
             <FaGoogle className="btn__icon" />
-            Google
-          </button>
+            Ingresar con Google
+          </a>
           <button onClick={this.handleSignUpFacebook} className="fb__button">
             <FaFacebookF className="btn__icon" />
             Facebook

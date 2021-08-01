@@ -15,6 +15,7 @@ const Router = (props) => {
         .split("; ")
         .find((row) => row.startsWith("token="))
         .split("=")[1];
+      console.log(cookieA);
       if (cookieA) {
         setLogged(true);
       }
