@@ -130,8 +130,8 @@ router.get(
   (req, res) => {
     console.log(req.user.token);
     res.cookie("token", req.user.token);
-    // res.redirect("https://authenticate-app-2c3cf.web.app/");
-    res.redirect("http://localhost:3001");
+    res.redirect("https://authenticate-app-2c3cf.web.app/");
+    // res.redirect("http://localhost:3001");
   }
 );
 
