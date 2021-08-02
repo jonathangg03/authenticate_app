@@ -129,10 +129,7 @@ router.get(
   passport.authenticate("google-auth", { session: false }),
   (req, res) => {
     console.log(req.user.token);
-    res.cookie("token", req.user.token, {
-      httpOnly: true,
-      secure: true,
-    });
+    res.cookie("token", req.user.token);
     res.redirect("http://localhost:3001");
   }
 );
