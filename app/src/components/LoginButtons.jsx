@@ -11,7 +11,10 @@ const LoginButtons = () => {
         <FaGoogle className="btn__icon" />
         Enter with Google
       </a>
-      <a href="/" className="social__button fb">
+      <a
+        href="http://localhost:3000/api/user/auth/facebook"
+        className="social__button fb"
+      >
         <FaFacebookF className="btn__icon" />
         Enter with Facebook
       </a>

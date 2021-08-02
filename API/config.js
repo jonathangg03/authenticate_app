@@ -13,4 +13,8 @@ module.exports = {
     consumerApiKey: process.env.TWITTER_API_KEY,
     consumerApiSecret: process.env.TWITTER_API_SECRET,
   },
+  facebook: {
+    clientAppId: process.env.FACEBOOK_APP_ID,
+    clientAppSecret: process.env.FACEBOOK_APP_SECRET,
+  },
 };
