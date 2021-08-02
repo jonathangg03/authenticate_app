@@ -130,8 +130,8 @@ router.get(
   (req, res) => {
     console.log(req.user.token);
     res.cookie("token", req.user.token, {
-      httpOnly: false,
-      secure: false,
+      httpOnly: true,
+      secure: true,
     });
     res.redirect("http://localhost:3001");
   }
