@@ -32,7 +32,7 @@ const oAuth2Strategy = new OAuth2Strategy(
         },
       });
 
-      if (response.data.length < 1 || response.status !== 200) {
+      if (!response.data) {
         return done(null, false, { message: "Problem with login" });
       }
 

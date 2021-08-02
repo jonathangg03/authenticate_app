@@ -109,8 +109,6 @@ router.post("/sign-provider", async (req, res) => {
     lastName: newUser.lastName,
     email: newUser.email,
   };
-
-  console.log(payload);
   const token = jwt.sign(payload, config.secret, {
     expiresIn: "1h",
   });
