@@ -8,6 +8,7 @@ const config = require("../config");
 
 require("../auth/strategies/basic");
 require("../auth/strategies/google");
+require("../auth/strategies/twiter");
 
 router.post("/sign-up", async (req, res) => {
   const userTaken = await Users.find({ email: req.body.email });
@@ -125,6 +126,17 @@ router.get(
 router.get(
   "/auth/google/callback",
   passport.authenticate("google-auth", { session: false }),
+  (req, res) => {
+    res.cookie("token", req.user.token);
+    res.redirect("http://localhost:3001");
+  }
+);
+
+router.get("/auth/twitter", passport.authenticate("twitter-auth"));
+
+router.get(
+  "/auth/twitter/callback",
+  passport.authenticate("twitter-auth", { session: false }),
   (req, res) => {
     res.cookie("token", req.user.token);
     res.redirect("http://localhost:3001");

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Loading from "../components/Loading";
-import { FaGoogle, FaFacebookF, FaTwitter } from "react-icons/fa";
+import LoginButtons from "../components/LoginButtons";
 import { Link } from "react-router-dom";
 import axios from "axios";
 
@@ -80,21 +80,7 @@ class Login extends Component {
             required
           />
           <button type="submit">Log in</button>
-          <a
-            href="http://localhost:3000/api/user/auth/google"
-            className="social__button google"
-          >
-            <FaGoogle className="btn__icon" />
-            Enter with Google
-          </a>
-          <a onClick={this.handleSignUpFacebook} className="social__button fb">
-            <FaFacebookF className="btn__icon" />
-            Enter with Facebook
-          </a>
-          <a onClick={this.handleSignUpTwitter} className="social__button tt">
-            <FaTwitter className="btn__icon" />
-            Enter with Twitter
-          </a>
+          <LoginButtons />
           <p className="invite__text">
             You do not have an account?
             <Link to="/sign-up">Sign up</Link>
