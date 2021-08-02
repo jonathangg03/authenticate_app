@@ -14,13 +14,14 @@ const oAuth2Strategy = new OAuth2Strategy(
     clientID: google.clientId,
     clientSecret: google.clientSecret,
     callbackURL:
-      "https://authenticate-app-j.herokuapp.com/api/user/auth/google/callback",
-    // "http://localhost:3000/api/user/auth/google/callback",
+      // "https://authenticate-app-j.herokuapp.com/api/user/auth/google/callback",
+      "http://localhost:3000/api/user/auth/google/callback",
   },
   async function (accessToken, refreshToken, profile, done) {
     try {
       const response = await axios({
-        url: "https://authenticate-app-j.herokuapp.com/api/user/sign-provider",
+        // url: "https://authenticate-app-j.herokuapp.com/api/user/sign-provider",
+        url: "http://localhost:3000/api/user/sign-provider",
         method: "post",
         data: {
           firstName: profile.firstName,
