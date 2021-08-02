@@ -128,8 +128,7 @@ router.get(
   "/auth/google/callback",
   passport.authenticate("google-auth", { session: false }),
   (req, res) => {
-    res.cookie("token", req.user.token);
-    res.redirect("http://localhost:3001");
+    res.cookie("token", req.user.token).redirect("http://localhost:3001");
   }
 );
 
