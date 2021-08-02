@@ -14,7 +14,6 @@ const FacebookStrategy = new Strategy(
   },
   async function (accessToken, refreshToken, profile, done) {
     try {
-      console.log(profile);
       const email = profile.email
         ? profile.email
         : `${profile.id}@facebook.com`;
