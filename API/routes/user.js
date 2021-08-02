@@ -4,7 +4,7 @@ const bcrypt = require("bcryptjs");
 const passport = require("passport");
 const jwt = require("jsonwebtoken");
 const router = express.Router();
-const config = require("../config");
+const config = require("../../config");
 
 require("../auth/strategies/basic");
 require("../auth/strategies/google");

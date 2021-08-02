@@ -2,7 +2,7 @@ const passport = require("passport");
 const axios = require("axios");
 const { get } = require("lodash");
 const { Strategy } = require("passport-twitter");
-const config = require("../../config");
+const config = require("../../../config");
 
 const TwitterStrategy = new Strategy(
   {

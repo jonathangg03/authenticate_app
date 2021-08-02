@@ -1,7 +1,7 @@
 const passport = require("passport");
 const { Strategy } = require("passport-facebook");
 const axios = require("axios");
-const { facebook } = require("../../config");
+const { facebook } = require("../../../config");
 
 const FacebookStrategy = new Strategy(
   {

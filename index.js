@@ -1,6 +1,6 @@
 const express = require("express");
 const cors = require("cors");
-const user = require("./routes/user");
+const user = require("./API/routes/user");
 const config = require("./config");
 const session = require("express-session");
 const passport = require("passport");
