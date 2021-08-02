@@ -130,7 +130,7 @@ router.get(
   (req, res) => {
     console.log(req.user.token);
     res.cookie("token", req.user.token);
-    res.redirect("http://localhost:3001");
+    res.redirect("https://authenticate-app-2c3cf.web.app/");
   }
 );
 
@@ -141,7 +141,7 @@ router.get(
   passport.authenticate("twitter-auth", { session: false }),
   (req, res) => {
     res.cookie("token", req.user.token);
-    res.redirect("http://localhost:3001");
+    res.redirect("https://authenticate-app-2c3cf.web.app/");
   }
 );
 
@@ -155,7 +155,7 @@ router.get(
   passport.authenticate("facebook-auth", { session: false }),
   (req, res) => {
     res.cookie("token", req.user.token);
-    res.redirect("http://localhost:3001");
+    res.redirect("https://authenticate-app-2c3cf.web.app/");
   }
 );
 
