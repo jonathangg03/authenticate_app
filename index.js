@@ -13,8 +13,12 @@ app.use(cookieParser());
 app.use(express.json());
 app.use(
   session({
+    cookie: {
+      secure: true,
+      maxAge: 60000,
+    },
     secret: config.sessionSecret,
-    resave: true,
+    resave: false,
     saveUninitialized: true,
   })
 );
