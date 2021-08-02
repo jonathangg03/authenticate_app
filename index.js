@@ -2,8 +2,8 @@ const express = require("express");
 const cors = require("cors");
 const user = require("./API/routes/user");
 const config = require("./config");
-const session = require("express-session");
-// const session = require("cookie-session");
+// const session = require("express-session");
+const session = require("cookie-session");
 const passport = require("passport");
 const cookieParser = require("cookie-parser");
 const app = express();
@@ -13,6 +13,10 @@ app.use(cookieParser());
 app.use(express.json());
 app.use(
   session({
+    cookie: {
+      secure: true,
+      maxAge: 60000,
+    },
     secret: config.sessionSecret,
     resave: false,
     saveUninitialized: true,
