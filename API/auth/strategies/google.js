@@ -15,7 +15,8 @@ const oAuth2Strategy = new OAuth2Strategy(
     clientSecret: google.clientSecret,
     callbackURL:
       "https://authenticate-app-j.herokuapp.com/api/user/auth/google/callback",
-  }, //http://localhost:3000/api/user/auth/google
+    // "http://localhost:3000/api/user/auth/google/callback",
+  },
   async function (accessToken, refreshToken, profile, done) {
     try {
       const response = await axios({
