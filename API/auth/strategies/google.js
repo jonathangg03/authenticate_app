@@ -3,12 +3,9 @@ const axios = require("axios");
 const { OAuth2Strategy } = require("passport-oauth");
 const { google } = require("../../../config");
 
-// const GOOGLE_AUTHORIZATION_URL = "https://accounts.google.com/o/oauth2/v2/auth";
-// const GOOGLE_TOKEN_URL = "https://www.googleapis.com/oauth2/v4/token";
 const GOOGLE_AUTHORIZATION_URL = "https://accounts.google.com/o/oauth2/auth";
 const GOOGLE_TOKEN_URL = "https://oauth2.googleapis.com/token";
 const GOOGLE_USERINFO_URL = "https://www.googleapis.com/oauth2/v3/userinfo";
-// const GOOGLE_USERINFO_URL = "https://openidconnect.googleapis.com/v1/userinfo";
 
 const oAuth2Strategy = new OAuth2Strategy(
   {
@@ -16,13 +13,13 @@ const oAuth2Strategy = new OAuth2Strategy(
     tokenURL: GOOGLE_TOKEN_URL,
     clientID: google.clientId,
     clientSecret: google.clientSecret,
-    callbackURL: "/api/user/auth/google/callback",
+    callbackURL:
+      "https://authenticate-app-j.herokuapp.com/api/user/auth/google/callback",
   }, //http://localhost:3000/api/user/auth/google
   async function (accessToken, refreshToken, profile, done) {
-    // console.log(profile);
     try {
       const response = await axios({
-        url: "http://localhost:3000/api/user/sign-provider",
+        url: "https://authenticate-app-j.herokuapp.com/api/user/sign-provider",
         method: "post",
         data: {
           firstName: profile.firstName,

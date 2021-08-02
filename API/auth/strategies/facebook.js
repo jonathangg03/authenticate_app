@@ -8,7 +8,8 @@ const FacebookStrategy = new Strategy(
     clientID: facebook.clientAppId,
     clientSecret: facebook.clientAppSecret,
     // callbackURL: "https://twitter.com/jonathangg_03",
-    callbackURL: "/api/user/auth/facebook/callback",
+    callbackURL:
+      "https://authenticate-app-j.herokuapp.com/api/user/auth/facebook/callback",
     profileFields: ["id", "email", "displayName"],
   },
   async function (accessToken, refreshToken, profile, done) {
@@ -18,7 +19,7 @@ const FacebookStrategy = new Strategy(
         ? profile.email
         : `${profile.id}@facebook.com`;
       const response = await axios({
-        url: "http://localhost:3000/api/user/sign-provider",
+        url: "https://authenticate-app-j.herokuapp.com/api/user/sign-provider",
         method: "post",
         data: {
           name: profile.name,

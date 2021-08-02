@@ -8,13 +8,14 @@ const TwitterStrategy = new Strategy(
   {
     consumerKey: config.twitter.consumerApiKey,
     consumerSecret: config.twitter.consumerApiSecret,
-    callbackURL: "/api/user/auth/twitter/callback",
+    callbackURL:
+      "https://authenticate-app-j.herokuapp.com/api/user/auth/twitter/callback",
     includeEmail: true,
   },
   async function (token, tokenSecret, profile, done) {
     try {
       const response = await axios({
-        url: `http://localhost:3000/api/user/sign-provider`,
+        url: "https://authenticate-app-j.herokuapp.com/api/user/sign-provider",
         method: "post",
         data: {
           firstName: profile.displayName,
