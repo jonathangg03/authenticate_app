@@ -1,4 +1,4 @@
-require("dotenv").config();
+if (process.env.NODE_ENV === 'development') require('dotenv').config()
 
 module.exports = {
   port: process.env.PORT,
@@ -7,14 +7,14 @@ module.exports = {
   sessionSecret: process.env.SESSION_SECRET,
   google: {
     clientId: process.env.GOOGLE_CLIENT_ID,
-    clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+    clientSecret: process.env.GOOGLE_CLIENT_SECRET
   },
   twitter: {
     consumerApiKey: process.env.TWITTER_API_KEY,
-    consumerApiSecret: process.env.TWITTER_API_SECRET,
+    consumerApiSecret: process.env.TWITTER_API_SECRET
   },
   facebook: {
     clientAppId: process.env.FACEBOOK_APP_ID,
-    clientAppSecret: process.env.FACEBOOK_APP_SECRET,
-  },
-};
+    clientAppSecret: process.env.FACEBOOK_APP_SECRET
+  }
+}
